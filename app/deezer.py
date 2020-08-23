@@ -25,6 +25,8 @@ TYPE_ALBUM_TRACK = "album_track" # used for listing songs of an album
 _deezer_is_working = False
 
 session = requests.Session()
+session.cookies.update({'arl': config['deezer']['arl'], 'comeback': '1'})
+
 userAgent = (
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
     'AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -42,6 +44,7 @@ httpHeaders = {
 session.headers.update(httpHeaders)
 
 def apiCall(method, json_req=False):
+    print("DEEEEEEEEEEEBUG: apiCall")
     ''' Requests info from the hidden api: gw-light.php.
     '''
     unofficialApiQueries = {
@@ -58,6 +61,8 @@ def apiCall(method, json_req=False):
     return req['results']
 
 def loginUserToken(token):
+    print("DEEEEEEEEEEEBUG: loginUserToken")
+
     ''' Handles userToken for settings file, for initial setup.
         If no USER_ID is found, False is returned and thus the
         cookie arl is wrong. Instructions for obtaining your arl
@@ -561,10 +566,11 @@ def test_deezer_login():
 
 
 def init_deezer_session():
-    if not loginUserToken(config['deezer']['arl']):
-        print("Not logged in. Maybe the arl token has expired?")
-        exit()
-    getTokens()
+    #print("DEEEEEEEEEEEBUG: init_deezer_session")
+    #if not loginUserToken(config['deezer']['arl']):
+    #    print("Not logged in. Maybe the arl token has expired?")
+    #    exit()
+    #getTokens()
     test_deezer_login()
 
 init_deezer_session()
