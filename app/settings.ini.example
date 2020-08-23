@@ -48,6 +48,9 @@ workers = 2
 arl = fre42682825153a4c1f9672fd0bab32ed9d63b7c
 flac_quality = True
 
+; download flac files (if False mp3 is used)
+flac_quality = True
+
 ; run a query on deezer every N minutes to keep the session alive
 keepalive = 60
 
